@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery Crash Course | Selectors</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        body{
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            line-height: 1.5em;
+        }
+        header{
+            background: #333;
+            color:#fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom:4px #000 solid;
+            margin-bottom:10px;
+        }
+        #container{
+            width:90%;
+            margin:auto;
+            padding:10px;
+        }
+        .myClass{
+            color: blue;
+            background:black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>jQuery Crash Course</h1>
+    </header>
+    <div id="container">
+        <button id="btn1">Button 1</button>
+        <p class="para1">This is a paragraph</p>
+        <p class="para2">This is another paragraph</p>
+        <div id="myDiv"> </div>
+        
+        <input type="text" id="newItem">
+        <ul id="list">
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+            <li>List item 4</li>
+        </ul>
+        <a href="https://google.com">Google</a>
+        <ul id="users">
+        </ul>
+    </div>
+    <script>
+        $(document).ready(function(){
+
+        //     //add, remove, toggle class
+        //     $('p.para1').css({color: 'red', background: '#ccc'});
+        //     //$('p.para2').addClass('myClass');
+        //     //$('p.para2').removeClass('myClass');
+        //     $('#btn1').click(function(){
+        //         $('p.para2').toggleClass('myClass');
+        //     });
+
+        //     //add elements to dom
+        //    // $('#myDiv').text("Hello world");
+        //     $('#myDiv').html('<h3>Hello World</h3>');
+
+            //get text from dom
+            //alert($('#myDiv').text());
+
+            // $('ul').append('<li>Append list item</li>');
+            // $('ul').prepend('<li>Prepend list item</li>');
+
+            // $('p.para1').appendTo('.para2');
+            // $('p.para1').prependTo('.para2');
+
+            // $('ul').before('<h4>Hello</h4>');
+            // $('ul').after('<h3>Hello World</h3>');
+
+            // //take everything out of the element so its empty
+            // $('ul').empty();
+            // //remove element from dom
+            // $('ul').detach();
+
+            // //add/get/remove an attribute
+            // $('a').attr('target', '_blank');
+            // alert($('a').attr('href'));
+            // $('a').removeAttr('target');
+
+            //wrap elements in other elements
+            //$('p').wrap('<h1>');
+            //wraps all the p elements in a h1
+            //$('p').wrapAll('<h1>');
+
+            //append item to list when enter key is pressed
+            $('#newItem').keyup(function(e){
+                var code = e.which;
+                if(code == 13){
+                    e.preventDefault();
+                    $('ul').append('<li>'+e.target.value+'</li>');
+                }
+            });
+
+            //append each name into the ul
+            // var myArr = ['Brad', 'Kelly', 'Nate', 'Jose'];
+            // $.each(myArr, function(i, val){
+            //     $('#users').append('<li>'+val+'</li>');
+            // });
+            
+            //grab the list items from the dom put them in an array
+            var newArr = $('ul#list li').toArray();
+            $.each(newArr, function(i, val){
+                console.log(val.innerHTML);
+            })
+        });
+       
+    </script>
+</body>
+</html>
